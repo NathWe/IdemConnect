@@ -4,7 +4,7 @@ trigger OrderTrigger on Order (before update, after update, after insert, after 
     // Check if order has an order item
     if(Trigger.isUpdate) {
         if(Trigger.isBefore) {
-            OrderTriggerHandler.checkOrderHasOrderItem(Trigger.new);
+            OrderTriggerHandler.checkOrderHasAnOrderItem(Trigger.new);
             OrderTriggerHandler.activateAccountField(Trigger.new);
         }
         if(Trigger.isAfter) {

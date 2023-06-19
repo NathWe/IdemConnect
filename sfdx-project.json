@@ -5,7 +5,7 @@
       "default": true
     }
   ],
-  "name": "IdemConnect",
+  "name": "Idem Connect",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "57.0"
