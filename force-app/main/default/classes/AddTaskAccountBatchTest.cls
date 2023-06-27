@@ -4,7 +4,9 @@ private with sharing class AddTaskAccountBatchTest {
     static void makeData(){
         List<Account> accList = TestDataFactory.generateAccountsList(1);
     }
-
+    /**
+     * Test method for adding a task to the account owner.
+     */
     @isTest
     public static void addTaskToAccountOwner() {
         // Arrange
@@ -32,7 +34,9 @@ private with sharing class AddTaskAccountBatchTest {
         System.assertEquals(expectedTask.OwnerId, accWithTaskFromBatch.Tasks[0].OwnerId);
         System.assertEquals(expectedTask.ReminderDateTime.date(), accWithTaskFromBatch.Tasks[0].ReminderDateTime.date());
     }
-
+    /**
+     * Test method for an account that already has a task with the subject "Call".
+     */
     @isTest
     public static void accountAlreadyHasTaskWithCall() {
         // Arrange

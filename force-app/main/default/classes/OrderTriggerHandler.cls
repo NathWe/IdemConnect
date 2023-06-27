@@ -27,7 +27,12 @@ public with sharing class OrderTriggerHandler {
         }
     }
 
-
+/**
+ * Updates the Active__c field of related accounts to true for orders with at least one associated account.
+ * 
+ * @param ordersList => List of Order objects (Trigger.New orders)
+ * @return void
+ */
     public static void activateAccountField(List<Order> ordersList) {
         Set<Id> orderAccountIdSet = new Set<Id>();
         List<Account> accountsToUpdateList= new List<Account>();
@@ -46,7 +51,12 @@ public with sharing class OrderTriggerHandler {
         update accountsToUpdateList;
     }
 
-
+/**
+ * Updates the Active__c field of related accounts to false if they have no associated orders.
+ * 
+ * @param ordersList => List of Order objects (Trigger.New orders)
+ * @return void
+ */
     public static void disableAccountField(List<Order> ordersList) {
         Set<Id> orderAccountIdSet = new Set<Id>();
         List<Account> accountsToUpdateList= new List<Account>();

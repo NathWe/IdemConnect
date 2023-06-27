@@ -8,6 +8,9 @@ public with sharing class OrderTriggerTest {
         Product2 prodct = TestDataFactory.generateProduct();
         PricebookEntry pbe = TestDataFactory.generatePriceBookEntry(prodct);
     }
+     /**
+     * Test method to verify that an error is thrown when updating the status of an order to "Activated" without associated products.
+     */
     @isTest
     static void updateOrderWithoutProductTest() {
         // Arrange
@@ -27,7 +30,9 @@ public with sharing class OrderTriggerTest {
         // Assert
         System.assertEquals('Please add a product to your order before changing the status to Activated', errorMessage);
     }
-    
+    /**
+     * Test method to verify that an order can be successfully updated to "Activated" when it has associated products.
+     */
     @isTest
     static void updateOrderWithProductTest() {
         // Arrange
@@ -55,9 +60,9 @@ public with sharing class OrderTriggerTest {
         System.assertEquals('noError', errorMessage);
         System.assertEquals('Activated', ordrWithOi.status);
     }
-
-
-
+    /**
+     * Test method to verify that the Active__c field of related accounts is set to true when an order is added to the account.
+     */
     @isTest
     static void activateAccountFieldTest() {
         // Arrange
@@ -73,7 +78,9 @@ public with sharing class OrderTriggerTest {
         Account acc = [SELECT Id, Name, Active__c FROM Account WHERE Id = :ordrList[0].AccountId LIMIT 1];
         System.assertEquals(true, acc.Active__c);
     }
-
+    /**
+     * Test method to verify that the Active__c field of related accounts is set to false when all orders are removed from the account.
+     */
     @isTest
     static void deactivateAccountFieldTest() {
         // Arrange
@@ -91,7 +98,9 @@ public with sharing class OrderTriggerTest {
         acc = [SELECT Id, Name, Active__c FROM Account LIMIT 1];
         System.assertEquals(false, acc.Active__c);
     }
-
+    /**
+     * Test method to verify that the Active__c field of related accounts is updated correctly when orders are transferred to a different account.
+     */
     @isTest
     static void changeOrderRelatedAccount() {
         // Arrange
